@@ -1,9 +1,6 @@
 # RBAC
 Role based access control
 
-Problem statement:
-Role Based Access Control:
-
 Implement a role based auth system. System should be able to assign a role to user and remove a user from the role.
 
 Entities are USER, ACTION TYPE, RESOURCE, ROLE
