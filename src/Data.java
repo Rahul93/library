@@ -22,15 +22,18 @@ public class Data {
             List<ActionType> currentActionTypes = resource.getValue();
             String resourceName = resource.getKey();
             for(ActionType actionType : currentActionTypes) {
-                cache.add(user.getId()+"_"+resourceName+"_"+actionType);
+                cache.add(getCacheKey(user, resourceName, actionType));
             }
         }
         return true;
     }
 
+    public static String getCacheKey(User user, String fileName, String actionType) {
+        return user.getId()+"_"+fileName+"_"+actionType
+    }
 
     public static boolean search(User user, String actionType, String name) {
-        String key = user.getId()+"_"+name+"_"+actionType;
+        String key = getCacheKey(user, name, actionType);
         Set<String> cache = (Set<String>) data.get("cache");
         return cache.contains(key);
     }

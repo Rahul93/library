@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class Runner {
 
-    public static void main(String args[]) {
+    public static void main (String args[]) {
 
         Resource r1 = new ResourceImpl();
         r1.setName("test1");
@@ -27,7 +27,7 @@ public class Runner {
         user.setStatus(true);
         Data.addUser(user);
 
-        boolean output = Data.search(user, "READ", "test3");
+        boolean output = Data.search(user, "READ", "test2");
         System.out.print(output);
     }
 }
