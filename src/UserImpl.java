@@ -14,7 +14,7 @@ public class UserImpl extends User {
         for(Role role : roles) {
             Map<String, List<ActionType>> currentResource= role.getResourceList();
 
-            currentResource.forEach((key, value) -> resources.merge(key, value, Utility::mergeList));
+            currentResource.forEach((key, value) -> resources.merge(key, value, (v1,v2) -> Utility.mergeList(v1, v2)));
         }
         return resources;
     }
