@@ -4,6 +4,11 @@ public class Data {
 
     static private Map<String, Object> data = new HashMap<>();
 
+    /**
+     * Add user to database(in this case ram object)
+     * @param user
+     * @return
+     */
     public static boolean addUser(User user) {
         List<User> users = (List<User>) data.get("user");
         if(users == null) {
@@ -28,11 +33,25 @@ public class Data {
         return true;
     }
 
+    /**
+     *
+     * @param user
+     * @param fileName
+     * @param actionType
+     * @return
+     */
     public static String getCacheKey(User user, String fileName, String actionType) {
         return user.getId()+"_"+fileName+"_"+actionType;
     }
 
-    public static boolean search(User user, String actionType, String name) {
+    /**
+     * Checks if given user has certain access to certain resource or not
+     * @param user
+     * @param actionType
+     * @param name
+     * @return
+     */
+    public static boolean isUserAuthorized(User user, String actionType, String name) {
         String key = getCacheKey(user, name, actionType);
         Set<String> cache = (Set<String>) data.get("cache");
         return cache.contains(key);

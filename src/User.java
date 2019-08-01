@@ -3,19 +3,11 @@ import java.util.Map;
 import java.util.Set;
 
 public abstract class User {
-    public List<Role> getRole() {
-        return role;
-    }
-
-    public void setRole(List<Role> role) {
-        this.role = role;
-    }
-
     private List<Role> role;
     private String name;
     private boolean status;
-    protected String id;
     private String password;
+    protected String id;
 
     public boolean isStatus() {
         return status;
@@ -25,6 +17,13 @@ public abstract class User {
         this.status = status;
     }
 
+    public List<Role> getRole() {
+        return role;
+    }
+
+    public void setRole(List<Role> role) {
+        this.role = role;
+    }
 
     public String getPassword() {
         return password;

@@ -27,7 +27,7 @@ public class Runner {
         user.setStatus(true);
         Data.addUser(user);
 
-        boolean output = Data.search(user, "READ", "test2");
+        boolean output = Data.isUserAuthorized(user, "READ", "test2");
         System.out.print(output);
     }
 }
