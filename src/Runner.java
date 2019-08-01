@@ -25,9 +25,9 @@ public class Runner {
         user.setName("test1");
         user.setPassword("password");
         user.setStatus(true);
-        Data.addUser(user);
+        String uid = Data.addUser(user);
 
-        boolean output = Data.isUserAuthorized(user, "READ", "test2");
+        boolean output = Data.isUserAuthorized(uid, "READ", "test2");
         System.out.print(output);
     }
 }

@@ -1,3 +1,5 @@
+import org.jetbrains.annotations.NotNull;
+
 import java.util.*;
 
 public class Data {
@@ -9,13 +11,13 @@ public class Data {
      * @param user
      * @return
      */
-    public static boolean addUser(User user) {
-        List<User> users = (List<User>) data.get("user");
+    public static String addUser(User user) {
+        Map<String, User> users = (Map<String, User>) data.get("user");
         if(users == null) {
-            users = new ArrayList<>();
+            users = new HashMap<>();
             data.put("user",users);
         }
-        users.add(user);
+        users.put(user.getId(), user);
 
         Map<String, List<ActionType>> resources = user.getAllResources();
         Set<String> cache = (Set<String>) data.get("cache");
@@ -30,9 +32,16 @@ public class Data {
                 cache.add(getCacheKey(user, resourceName, actionType.name()));
             }
         }
-        return true;
+        return user.getId();
     }
 
+    public static User searchByUid(String uid) throws Exception {
+        Map<String, User> users = (Map<String, User>) data.get("user");
+        if(users.containsKey(uid)){
+            return users.get(uid);
+        }
+        throw new Exception("You are not a user!");
+    }
     /**
      *
      * @param user
@@ -51,9 +60,15 @@ public class Data {
      * @param name
      * @return
      */
-    public static boolean isUserAuthorized(User user, String actionType, String name) {
-        String key = getCacheKey(user, name, actionType);
-        Set<String> cache = (Set<String>) data.get("cache");
-        return cache.contains(key);
+    public static boolean isUserAuthorized(String uid, String actionType, String name) {
+        try{
+            User user = searchByUid(uid);
+            String key = getCacheKey(user, name, actionType);
+            Set<String> cache = (Set<String>) data.get("cache");
+            return cache.contains(key);
+        } catch(Exception e) {
+            return false;
+        }
+
     }
 }
