@@ -52,4 +52,7 @@ public abstract class User {
 
     public abstract Map<String, List<ActionType>> getAllResources();
 
+    public abstract void addRole(Role role);
+
+    public abstract void removeRole(Role role);
 }

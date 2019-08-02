@@ -25,9 +25,18 @@ public class Runner {
         user.setName("test1");
         user.setPassword("password");
         user.setStatus(true);
-        String uid = Data.addUser(user);
+        String uid = DataService.addUser(user);
 
-        boolean output = Data.isUserAuthorized(uid, "READ", "test2");
+        boolean output = DataService.isUserAuthorized(uid, "READ", "test2");
+
+        Role rl2 = new RoleImpl();
+
+        Map<String, List<ActionType>> m2 = Map.of(r1.getName(), Arrays.asList(ActionType.READ), r2.getName(), Arrays.asList(ActionType.READ, ActionType.WRITE));
+        rl2.setResourceList(m2);
+        DataService.addRole(uid, rl2);
+        DataService.removeRole(uid, rl1);
+
+
         System.out.print(output);
     }
 }

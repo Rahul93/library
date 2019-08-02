@@ -22,4 +22,22 @@ public class UserImpl extends User {
         }
         return resources;
     }
+
+    /**
+     * Add a role to a user
+     * @param role
+     */
+    public void addRole(Role role) {
+        List<Role> roles = this.getRole();
+        roles.add(role);
+    }
+
+    /**
+     * Remove a role to a user
+     * @param role
+     */
+    public void removeRole(Role role) {
+        List<Role> roles = this.getRole();
+        roles.remove(role);
+    }
 }

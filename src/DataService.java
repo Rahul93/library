@@ -2,7 +2,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
-public class Data {
+public class DataService {
 
     static private Map<String, Object> data = new HashMap<>();
 
@@ -70,5 +70,37 @@ public class Data {
             return false;
         }
 
+    }
+
+    /**
+     * Find and add role to searched user
+     * @param uid
+     * @param role
+     * @return
+     */
+    public static boolean addRole(String uid, Role role) {
+        try{
+            User user = searchByUid(uid);
+            user.addRole(role);
+            return true;
+        } catch(Exception e) {
+            return false;
+        }
+    }
+
+    /**
+     * Find and remove role to searched user
+     * @param uid
+     * @param role
+     * @return
+     */
+    public static boolean removeRole(String uid, Role role) {
+        try{
+            User user = searchByUid(uid);
+            user.removeRole(role);
+            return true;
+        } catch(Exception e) {
+            return false;
+        }
     }
 }
